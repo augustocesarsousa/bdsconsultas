@@ -17,7 +17,7 @@ public class Uri2602Application implements CommandLineRunner{
 
 	
 	@Autowired
-	private CustomerRepository repositpry;
+	private CustomerRepository repository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Uri2602Application.class, args);
@@ -26,18 +26,18 @@ public class Uri2602Application implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		List<CustomerMinProjection> list = repositpry.searth1("rs");
+		List<CustomerMinProjection> list = repository.searth1("rs");
 		List<CustomerMinDTO> result1 = list.stream().map(x -> new CustomerMinDTO(x)).collect(Collectors.toList());
 		
-		System.out.println("\n Vanilla SQL");		
+		System.out.println("\n*** VANILLA SQL");		
 		for(CustomerMinDTO obj : result1) {
 			System.out.println(obj);
 		}
 		System.out.println("\n\n");
 		
-		List<CustomerMinDTO> result2 = repositpry.searth2("rs");
+		List<CustomerMinDTO> result2 = repository.searth2("rs");
 		
-		System.out.println("\n JPQL");		
+		System.out.println("\n*** JPQL");		
 		for(CustomerMinDTO obj : result2) {
 			System.out.println(obj);
 		}
